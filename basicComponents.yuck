@@ -1,0 +1,42 @@
+
+(defwidget labeled-container [name]
+  (box :class "container"
+    name
+    (children)))
+
+
+(defwidget two-boxes []
+  (box
+    (box :class "first" (children :nth 0))
+    (box :class "second" (children :nth 1))))
+
+
+(defwidget metric [label value onchange h iconClass]
+  (box :orientation h
+       :class "metric"
+       :space-evenly false
+    (box :orientation "h"
+
+    (box :class iconClass label )
+    (box :class "label" value)
+
+      )
+    (progress 
+           :value value
+      :class "progress"
+           )))
+
+
+(defwidget music []
+  (box :class "music"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    {music != "" ? " ${music}  羽 ${playingStatus}" : ""}))
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+.bar{
+  font-size: 1rem;
+  color: white;
+}
+
+.background{
+  background-color: #282828;
+}
+
+.volumeIcon{
+  font-size: 1.6rem; 
+}
+.music{
+  color: white;
+}
+
+.metric{
+  background-color: blue;
+
+  color: white;
+
+  .progress{
+    background-color: red;
+  }
+}

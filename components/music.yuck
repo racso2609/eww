@@ -1,0 +1,76 @@
+(defwidget music_text [] 
+
+(box 
+  :class "music_title"
+  :orientation "v"
+  {music_title}
+
+  {` ${music_artist}`}
+
+  )
+  )
+
+(defwidget music []
+  (box :class "music"
+       :orientation "v"
+       :space-evenly false
+    (image :path "$HOME/Images/8-4-2022/IMG-2022-04-08_11-59.png"
+      :image-width 150
+      :image-height 150
+      )
+    (music_text)
+    ))
+
+
+(defvar reveal_music false);
+
+
+(defwidget music_module []
+  (eventbox
+    :onhover '${eww} update reveal_music=${!reveal_music}'
+:onhoverlost '${eww} update reveal_music=${!reveal_music}'
+
+  
+  (button
+:width 20
+    :class "music_btn" :onclick `${eww} update reveal_music=${!reveal_music} && $HOME/.config/eww/scripts/open`
+
+    (box :class "music_icon" :space-evenly "false" :orientation "h" :spacing "5" 
+       {reveal_music ? "" : ""}
+	)))
+    )
+
+
+(defwindow music_menu 
+:geometry (geometry :x "25%" 
+						:y "7%" 
+            :anchor "top left"
+						:width "100px" 
+						:height "500px")
+(eventbox
+    :onhoverlost `${eww} update reveal_music=${!reveal_music} && $HOME/.config/eww/scripts/open`
+
+  (music)
+    )
+  )
+
+(deflisten music_artist
+  :initial "Not Artist"
+  "playerctl --follow metadata --format '{{ artist }}' || true"
+  )
+
+
+(deflisten music_title
+  :initial "Not Music"
+  "playerctl --follow metadata --format '{{ title }}' || true"
+  )
+
+
+
+
+(defpoll remainingTime :interval "1s"
+`playerctl metadata --format "{{ duration(mpris:length - position) }}"`)
+
+
+
+

@@ -1,0 +1,16 @@
+
+#!/bin/bash
+
+LOCK_FILE="$HOME/.cache/eww-music.lock"
+EWW_BIN="$HOME/eww/target/release/eww"
+
+# Open widgets
+if [[ ! -f "$LOCK_FILE" ]]; then
+    ${EWW_BIN} open music_menu
+    touch "$LOCK_FILE"
+    run && echo "ok good!"
+
+else
+    ${EWW_BIN} close music_menu
+    rm "$LOCK_FILE" && echo "closed"
+fi

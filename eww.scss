@@ -1,6 +1,19 @@
+*{
+	all: unset;
+	font-family: feather;
+	font-family: Caskaydia cove nerd font;
+    margin: 0;
+    padding: 0;
+}
+
+.music_icon{
+  font-size: 40px;
+}
+
 .bar{
   font-size: 1rem;
   color: white;
+  padding: 0 20px;
 }
 
 .background{
@@ -12,14 +25,22 @@
 }
 .music{
   color: white;
+  padding: 20px;
 }
 
 .metric{
-  background-color: blue;
-
   color: white;
 
   .progress{
-    background-color: red;
+    background-color: purple;
+    color: red;
+    margin: 0;
   }
 }
+
+.music_btn{
+  background-color: transparent;
+  color: white;
+  
+}
+

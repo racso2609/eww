@@ -1,56 +1,41 @@
 
 (include "./basicComponents.yuck");
+(include './components/volume.yuck');
+(include './components/battery.yuck');
+(include './components/music.yuck');
+
+(defvar eww "$HOME/eww/target/release/eww -c $HOME/.config/eww")
+
 
 (defwidget bar []
-  (box :orientation "h" :class 'bar' 
-    (music)
-    (sidestuff)))
+
+  (two-boxes :orientation "h" :class 'bar' :space-evenly true
+
+    (music_module)
+    (sidestuff)
+
+    ))
+
+
+
 
 (defwidget sidestuff []
-  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "center" :spacing 10
-    (metric :label "🔊"
-            :value volume
-      :h "v"
-      :iconClass "volumeIcon"
-            :onchange "amixer -D pulse sset Master {}%")
-    (labeled-container :name `${EWW_BATTERY.BAT0.status  == 'Charging' ? "" : EWW_BATTERY.BAT0.status == "Full"?"" :"" }  ${EWW_BATTERY.BAT0.capacity}%`)
-    time))
+  (box :class "sidestuff" :orientation "h" :space-evenly false  :halign "end" :spacing 15
 
-; (defwidget workspaces []
-;   (box :class "workspaces"
-;        :orientation "h"
-;        :space-evenly true
-;        :halign "start"
-;        :spacing 10
-;     (button :onclick "wmctrl -s 0" 1)
-;     (button :onclick "wmctrl -s 1" 2)
-;     (button :onclick "wmctrl -s 2" 3)
-;     (button :onclick "wmctrl -s 3" 4)
-;     (button :onclick "wmctrl -s 4" 5)
-;     (button :onclick "wmctrl -s 5" 6)
-;     (button :onclick "wmctrl -s 6" 7)
-;     (button :onclick "wmctrl -s 7" 8)
-;     (button :onclick "wmctrl -s 8" 9)))
+    (volume_component)
+    (battery)
+       time))
 
-(deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
-
-(defpoll volume :interval "1s"
-  "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -1")
-
-(defpoll playingStatus :interval "1s"
-`playerctl metadata --format "{{ duration(mpris:length - position) }}"`)
-
-(defpoll time :interval "10s"
-  "date '+%H:%M %b %d, %Y'")
+(defpoll time :interval "60s"
+  "date '+%H:%M-%b/%d/%Y'")
 
 
 
 (defwindow bar
   :monitor 0
   :windowtype "dock"
-  :geometry (geometry :x "0%"
-                      :y "10px"
+  :geometry (geometry :x "0"
+                      :y "0"
                       :width "50%"
                       :height "10px"
                       :anchor "top center")

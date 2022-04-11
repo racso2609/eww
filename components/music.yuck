@@ -10,16 +10,51 @@
   )
   )
 
+
+(defwidget player_icons [icon onclick ]
+  
+  (button
+
+    :onclick onclick
+  (box 
+    :class "player_icon"
+    (labeled-container  :name icon :w 100 :h 100))))
+
+(defvar hover_player false)
+
 (defwidget music []
   (box :class "music"
        :orientation "v"
        :space-evenly false
-    (image :path "$HOME/Images/8-4-2022/IMG-2022-04-08_11-59.png"
-      :image-width 150
-      :image-height 150
-      )
+    :spacing 20
+  (box
+    :width 150
+    :height 150 
+    (image :path music_image
+      :image-height 150)
+  )
     (music_text)
+
+   
+    (box :orientation "h"
+      (player_icons :icon "玲"
+        :onclick `playerctl previous`        
+        )
+      (eventbox 
+        :onhover `${eww} update hover_player=true`
+        :onhoverlost `${eww} update hover_player=false`
+        (player_icons
+          :icon {music_status ==  "Playing" ? hover_player ? "":"":hover_player ? "":""}
+          :onclick `playerctl play-pause`)
+
+        )
+      (player_icons :icon "怜"
+
+        :onclick `playerctl next`        
+        )
+      )
     ))
+      ; (player_icons :icon "怜")
 
 
 (defvar reveal_music false);
@@ -27,13 +62,13 @@
 
 (defwidget music_module []
   (eventbox
-    :onhover '${eww} update reveal_music=${!reveal_music}'
-:onhoverlost '${eww} update reveal_music=${!reveal_music}'
+    :onhover '${eww} update reveal_music=true'
+:onhoverlost '${eww} update reveal_music=false'
 
   
   (button
 :width 20
-    :class "music_btn" :onclick `${eww} update reveal_music=${!reveal_music} && $HOME/.config/eww/scripts/open`
+    :class "music_btn" :onclick `${eww} update reveal_music=${!reveal_music} && $HOME/.config/eww/scripts/openMusic`
 
     (box :class "music_icon" :space-evenly "false" :orientation "h" :spacing "5" 
        {reveal_music ? "" : ""}
@@ -46,9 +81,9 @@
 						:y "7%" 
             :anchor "top left"
 						:width "100px" 
-						:height "500px")
+						:height "300px")
 (eventbox
-    :onhoverlost `${eww} update reveal_music=${!reveal_music} && $HOME/.config/eww/scripts/open`
+    :onhoverlost `${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic`
 
   (music)
     )
@@ -60,11 +95,23 @@
   )
 
 
-(deflisten music_title
+
+(defpoll music_status :interval "1s"
   :initial "Not Music"
-  "playerctl --follow metadata --format '{{ title }}' || true"
+  `playerctl status`
   )
 
+
+(defpoll music_image
+  :initial ""
+  :interval '1s'
+`playerctl metadata | awk 'FNR == 3 {print $3}' | xargs curl > ../MUSIC_IMAGE.png &&  find MUSIC_IMAGE.png `
+  )
+
+(deflisten music_title
+  :initial "Not Music"
+  "playerctl --follow metadata --format '{{ trunc(title,20) }}' || true"
+  )
 
 
 

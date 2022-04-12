@@ -1,3 +1,28 @@
+(defvar reveal_music false)
+(defvar hover_player false)
+(defvar music_image "/home/racso/.cache/eww-music.png" )
+
+(deflisten music_artist
+  :initial "Not Artist"
+  "playerctl --follow metadata --format '{{ artist }}' || true"
+  )
+
+(defpoll music_status :interval "1s"
+  :initial "Not Music"
+  `playerctl status`
+  )
+
+
+(deflisten music_title
+  :initial "Not Music"
+  "playerctl --follow metadata --format '{{ trunc(title,20) }}' || true"
+  )
+
+(defpoll remainingTime :interval "1s"
+`playerctl metadata --format "{{ duration(mpris:length - position) }}"`)
+
+
+
 (defwidget music_text [] 
 
 (box 
@@ -20,60 +45,49 @@
     :class "player_icon"
     (labeled-container  :name icon :w 100 :h 100))))
 
-(defvar hover_player false)
 
 (defwidget music []
   (box :class "music"
-       :orientation "v"
-       :space-evenly false
+    :orientation "v"
+    :space-evenly false
     :spacing 20
-  (box
-    :width 150
-    :height 150 
-    (image :path music_image
-      :image-height 150)
-  )
-    (music_text)
+      (box
+        :width 150
+        :height 150 
+        (image :path music_image
+          :image-height 150))
 
+    (music_text)
    
     (box :orientation "h"
       (player_icons :icon "玲"
-        :onclick `playerctl previous`        
-        )
+        :onclick `playerctl previous`)
+
       (eventbox 
         :onhover `${eww} update hover_player=true`
         :onhoverlost `${eww} update hover_player=false`
         (player_icons
           :icon {music_status ==  "Playing" ? hover_player ? "":"":hover_player ? "":""}
-          :onclick `playerctl play-pause`)
+          :onclick `playerctl play-pause`))
 
-        )
       (player_icons :icon "怜"
-
-        :onclick `playerctl next`        
-        )
-      )
-    ))
-      ; (player_icons :icon "怜")
+        :onclick `playerctl next`))))
 
 
-(defvar reveal_music false);
 
 
 (defwidget music_module []
   (eventbox
-    :onhover '${eww} update reveal_music=true'
-:onhoverlost '${eww} update reveal_music=false'
+    :onhover '${eww} update reveal_music=true  && $HOME/.config/eww/scripts/openMusic && /home/racso/.config/eww/scripts/getMusicImage.sh'
+:onhoverlost '${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic'
 
   
-  (button
 :width 20
-    :class "music_btn" :onclick `${eww} update reveal_music=${!reveal_music} && $HOME/.config/eww/scripts/openMusic`
+    :class "music_btn" :onclick `${eww} update reveal_music=${!reveal_music}`
 
     (box :class "music_icon" :space-evenly "false" :orientation "h" :spacing "5" 
        {reveal_music ? "" : ""}
 	)))
-    )
 
 
 (defwindow music_menu 
@@ -88,35 +102,6 @@
   (music)
     )
   )
-
-(deflisten music_artist
-  :initial "Not Artist"
-  "playerctl --follow metadata --format '{{ artist }}' || true"
-  )
-
-
-
-(defpoll music_status :interval "1s"
-  :initial "Not Music"
-  `playerctl status`
-  )
-
-
-(defpoll music_image
-  :initial ""
-  :interval '1s'
-`playerctl metadata | awk 'FNR == 3 {print $3}' | xargs curl > ../MUSIC_IMAGE.png &&  find MUSIC_IMAGE.png `
-  )
-
-(deflisten music_title
-  :initial "Not Music"
-  "playerctl --follow metadata --format '{{ trunc(title,20) }}' || true"
-  )
-
-
-
-(defpoll remainingTime :interval "1s"
-`playerctl metadata --format "{{ duration(mpris:length - position) }}"`)
 
 
 

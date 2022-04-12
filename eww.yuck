@@ -9,15 +9,14 @@
 
 (defwidget bar []
 
-  (two-boxes :orientation "h" :class 'bar' :space-evenly true
-
+  (box :orientation "h"  :space-evenly true :class 'bar'
+    (box
+:space-evenly false
     (music_module)
+      )
     (sidestuff)
 
     ))
-
-
-
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false  :halign "end" :spacing 15

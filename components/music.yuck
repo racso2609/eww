@@ -79,23 +79,17 @@
 (defwidget music_module []
   (eventbox
     :onhover '${eww} update reveal_music=true  && $HOME/.config/eww/scripts/openMusic && /home/racso/.config/eww/scripts/getMusicImage.sh'
-:onhoverlost '${eww} update reveal_music=false'
+    :onhoverlost '${eww} update reveal_music=false'
+    :class "music_icon" :onclick `${eww} update reveal_music=${!reveal_music}`
 
-  
-:width 20
-    :class "music_btn" :onclick `${eww} update reveal_music=${!reveal_music}`
-
-    (box :class "music_icon" :space-evenly "false" :orientation "h" :spacing "5" 
-       {reveal_music ? "" : ""}
-	)))
+       {reveal_music ? "  " : "  "}
+	))
 
 
 (defwindow music_menu 
 :geometry (geometry :x "25%" 
 						:y "7%" 
-            :anchor "top left"
-						:width "100px" 
-						:height "300px")
+            :anchor "top left")
 (eventbox
     :onhoverlost `${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic`
 

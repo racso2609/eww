@@ -1,6 +1,6 @@
 # CUSTOM BAR WITH EWW
   ## dependencies
-    [[https://github.com/elkowar/eww |eww]]
+    [eww](https://github.com/elkowar/eww )
     playerctl
     curl
     awk

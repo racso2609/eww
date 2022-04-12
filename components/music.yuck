@@ -79,7 +79,7 @@
 (defwidget music_module []
   (eventbox
     :onhover '${eww} update reveal_music=true  && $HOME/.config/eww/scripts/openMusic && /home/racso/.config/eww/scripts/getMusicImage.sh'
-:onhoverlost '${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic'
+:onhoverlost '${eww} update reveal_music=false'
 
   
 :width 20

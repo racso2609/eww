@@ -82,20 +82,16 @@
     :onhoverlost '${eww} update reveal_music=false'
     :class "music_icon" :onclick `${eww} update reveal_music=${!reveal_music}`
 
-       {reveal_music ? "  " : "  "}
-	))
+       {reveal_music ? "  " : "  "}))
 
 
 (defwindow music_menu 
-:geometry (geometry :x "25%" 
-						:y "7%" 
-            :anchor "top left")
-(eventbox
+  :geometry (geometry :x "25%" 
+  :y "30" 
+  :anchor "top left")
+  (eventbox
     :onhoverlost `${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic`
-
-  (music)
-    )
-  )
+    (music)))
 
 
 

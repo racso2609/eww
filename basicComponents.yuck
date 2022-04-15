@@ -20,7 +20,7 @@
     (box :class `${class}-second` (children :nth 1))))
 
 
-(defwidget metric [icon labelClass label value onchange h iconClass spacing valign ]
+(defwidget metric [icon labelClass label value  h iconClass spacing valign ]
   (box :orientation h
     :class "metric"
 

@@ -1,17 +1,21 @@
-
 (defwidget volume_component []
- (metric :icon `🔊`
-   :label `${volume}%`
-   :value volume
-   :labelClass 'music-label'
-   :valign 'senter'
-   :spacing 10
-      :h "h"
-      :iconClass "volumeIcon"
-            :onchange "amixer -D pulse sset Master {}%")
+  (button
+    :onclick 'pactl set-sink-mute alsa_output.pci-0000_03_00.6.analog-stereo ${is_muted == 'no'}'
+    (box
+    (labeled-container
+      :name `${is_muted == 'yes' ? "ﱝ" : volume < "60" ? "" :volume > "60" ? "" : "墳"}` 
+      :w 20
+      :h 20)
 
-  )
+    (labeled-container
+      :name `${volume}%` 
+      :w 20
+      :h 20))))
 
+
+
+(defpoll is_muted :interval "1s"
+  "/home/racso/.config/eww/scripts/getVolumeMute")
 
 (defpoll volume :interval "1s"
-  "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -1")
+  "/home/racso/.config/eww/scripts/volume")

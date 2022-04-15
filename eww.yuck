@@ -4,7 +4,7 @@
 (include './components/battery.yuck');
 (include './components/music.yuck');
 
-(defvar eww "$HOME/eww/target/release/eww -c $HOME/.config/eww")
+(defvar eww "/usr/bin/eww -c $HOME/.config/eww")
 
 
 (defwidget bar []

@@ -1,0 +1,33 @@
+(defpoll date :interval "24h"
+  "date '+%b/%d/%Y'")
+
+(defpoll time :interval "60s"
+  "date '+%H:%M'")
+
+(defvar showDate false)
+(defvar showCalendar false)
+
+
+(defwidget timeAndDate []
+  
+  (eventbox
+    :onhover   `${eww} update showDate=true`
+    :onhoverlost   `${eww} update showDate=false`
+    (button
+      :onclick `${eww} open calendarWin`
+      (box
+        `${showDate ? date : time}`))))
+
+(defwindow calendarWin 
+  :geometry (geometry :x "55%" 
+  :y "45" 
+  :anchor "top left"
+  :width "20%")
+  (eventbox
+    :onhoverlost `${eww} close calendarWin`
+    (calendar)))
+
+
+
+
+

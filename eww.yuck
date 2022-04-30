@@ -3,6 +3,7 @@
 (include './components/volume.yuck');
 (include './components/battery.yuck');
 (include './components/music.yuck');
+(include './components/dateTime.yuck');
 
 (defvar eww "/usr/bin/eww -c $HOME/.config/eww")
 
@@ -23,10 +24,7 @@
 
     (volume_component)
     (battery)
-       time))
-
-(defpoll time :interval "60s"
-  "date '+%H:%M-%b/%d/%Y'")
+       (timeAndDate)))
 
 
 

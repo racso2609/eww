@@ -87,7 +87,7 @@
 
 (defwindow music_menu 
   :geometry (geometry :x "25%" 
-  :y "30" 
+  :y "45" 
   :anchor "top left")
   (eventbox
     :onhoverlost `${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic`

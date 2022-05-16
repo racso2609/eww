@@ -19,7 +19,7 @@
         `${showDate ? date : time}`))))
 
 (defwindow calendarWin 
-  :geometry (geometry :x "55%" 
+  :geometry (geometry :x "60%" 
   :y "45" 
   :anchor "top left"
   :width "20%")

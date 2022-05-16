@@ -4,18 +4,19 @@
 (include './components/battery.yuck');
 (include './components/music.yuck');
 (include './components/dateTime.yuck');
+(include './components/dashboardInfo.yuck');
 
 (defvar eww "/usr/bin/eww -c $HOME/.config/eww")
 
 
 (defwidget bar []
   (box :orientation "h"  :space-evenly true :class 'bar' 
-    (box)
+    (dashboard)
     (music_module)
     (sidestuff)))
 
 (defwidget sidestuff []
-  (box :class "sidestuff" :orientation "h" :space-evenly false  :halign "end" :spacing 15
+  (box :space-evenly false  :halign "end" :spacing 15
 
     (volume_component)
     (battery)
@@ -27,7 +28,7 @@
   :monitor 0
   :windowtype "dock"
   :geometry (geometry :x "0"
-                      :y "10"
+                      :y "5"
                       :width "60%"
                       :height "10px"
                       :anchor "top center")

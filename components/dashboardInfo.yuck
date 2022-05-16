@@ -1,0 +1,2 @@
+(defwidget dashboard []
+    (box :halign 'start' ""))

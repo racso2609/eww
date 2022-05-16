@@ -39,8 +39,9 @@
   :class "music_title"
   :orientation "v"
   :space-evenly false
-  {` ${music_artist}`}
-  {music_title}))
+  {music_title}
+{`ﴁ ${music_artist}`}
+  ))
 
 
 (defwidget player_icons [icon onclick ]
@@ -53,54 +54,56 @@
 
 (defwidget music []
   (box :class "music"
-    :orientation "v"
+    :orientation "h"
     :space-evenly false
-    :spacing 20
-      (box
-        :width 105
-        :height 105 
-          :class "music_image"
-          (circular-progress-bar
-            :dimension 165
-            :value 50
-        (image :path song_art
-          :image-height 150)))
+    :spacing 10
+    :valign 'center'
+    :halign 'center'
+      (circular-progress-bar
+        :dimension 165
+        :value 50
+          (image :path song_art
+            :image-height 150))
+      (box :orientation 'v'
+        :valign 'center'
+        :halign 'center'
+          (music_text)
 
    
-    (box :orientation "h"
-      (player_icons :icon "玲"
-        :onclick `playerctl previous`)
-      (eventbox 
-        :onhover `${eww} update hover_player=true`
-        :onhoverlost `${eww} update hover_player=false`
-        (player_icons
-          :icon {music_status ==  "Playing" ? hover_player ? "":"":hover_player ? "":""}
-          :onclick `playerctl play-pause`))
+          (box :orientation "h" :halign 'cetern' :valign "center" 
+          (player_icons :icon "玲"
+            :onclick `playerctl previous`)
+          (eventbox 
+            :onhover `${eww} update hover_player=true`
+            :onhoverlost `${eww} update hover_player=false`
+          (player_icons
+            :icon {music_status ==  "Playing" ? hover_player ? "":"":hover_player ? "":""}
+            :onclick `playerctl play-pause`))
 
-      (player_icons :icon "怜"
-        :onclick `playerctl next`))
-     (music_text)
-
-     ))
+          (player_icons :icon "怜"
+            :onclick `playerctl next`)))))
 
 
 
 (defwidget music_module []
-  (eventbox
-    :onhover '${eww} update reveal_music=true'
-    :onhoverlost '${eww} update reveal_music=false'
-    :onclick `${eww} update reveal_music=${!reveal_music}`
-    (box :space-evenly false :spacing 10
-      :class `${reveal_music?"music_icon_hover":""} music_title_short`
-      (button
-        :onclick '$HOME/.config/eww/scripts/openMusic'
-        :class `music_icon`
-          (circular-progress-bar
-            :dimension 30
-            :value 50
-            (image :path song_art
-              :image-height 30)))
-                music_title_short)))
+  (box
+    :halign "center"
+    (eventbox
+      :onhover '${eww} update reveal_music=true'
+      :onhoverlost '${eww} update reveal_music=false'
+      :onclick `${eww} update reveal_music=${!reveal_music}`
+      (box :space-evenly false :spacing 10
+        :class `${reveal_music?"music_icon_hover":""} music_title_short`
+        (button
+
+          :onclick '$HOME/.config/eww/scripts/openMusic'
+          :class `music_icon`
+            (circular-progress-bar
+              :dimension 30
+              :value 50
+              (image :path song_art
+                :image-height 30)))
+                  music_title_short))))
 
 
 (defwindow music_menu 

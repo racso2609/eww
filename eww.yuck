@@ -9,15 +9,10 @@
 
 
 (defwidget bar []
-
-  (box :orientation "h"  :space-evenly true :class 'bar'
-    (box
-:space-evenly false
+  (box :orientation "h"  :space-evenly true :class 'bar' 
+    (box)
     (music_module)
-      )
-    (sidestuff)
-
-    ))
+    (sidestuff)))
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false  :halign "end" :spacing 15
@@ -32,9 +27,9 @@
   :monitor 0
   :windowtype "dock"
   :geometry (geometry :x "0"
-                      :y "0"
-                      :width "50%"
+                      :y "10"
+                      :width "60%"
                       :height "10px"
                       :anchor "top center")
-  :reserve (struts :side "top" :distance "4%")
+  :reserve (struts :side "top" :distance "5%")
   (bar))

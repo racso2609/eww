@@ -1,6 +1,8 @@
 (defvar reveal_music false)
 (defvar hover_player false)
-(defvar music_image "/home/racso/.cache/eww-music.png" )
+
+(defpoll song_art :interval "5s"
+    "$HOME/.config/eww/scripts/getMusicImage")
 
 (deflisten music_artist
   :initial "Not Artist"
@@ -12,14 +14,22 @@
   `playerctl status`
   )
 
-
 (deflisten music_title
   :initial "Not Music"
   "playerctl --follow metadata --format '{{ trunc(title,20) }}' || true"
   )
 
-(defpoll remainingTime :interval "1s"
-`playerctl metadata --format "{{ duration(mpris:length - position) }}"`)
+(deflisten music_title_short
+  :initial "Not Music"
+  "playerctl --follow metadata --format '{{ trunc(title,10) }}' || true"
+)
+; (defpoll is_playing
+  ; :initial false
+  ; :interval '1s'
+    ; music_status == "Playing")
+
+
+
 
 
 
@@ -28,22 +38,17 @@
 (box 
   :class "music_title"
   :orientation "v"
-  {music_title}
-
+  :space-evenly false
   {` ${music_artist}`}
-
-  )
-  )
+  {music_title}))
 
 
 (defwidget player_icons [icon onclick ]
-  
   (button
-
     :onclick onclick
   (box 
     :class "player_icon"
-    (labeled-container  :name icon :w 100 :h 100))))
+    (labeled-container  :name icon :w 50 :h 50))))
 
 
 (defwidget music []
@@ -52,17 +57,19 @@
     :space-evenly false
     :spacing 20
       (box
-        :width 150
-        :height 150 
-        (image :path music_image
-          :image-height 150))
+        :width 105
+        :height 105 
+          :class "music_image"
+          (circular-progress-bar
+            :dimension 165
+            :value 50
+        (image :path song_art
+          :image-height 150)))
 
-    (music_text)
    
     (box :orientation "h"
       (player_icons :icon "玲"
         :onclick `playerctl previous`)
-
       (eventbox 
         :onhover `${eww} update hover_player=true`
         :onhoverlost `${eww} update hover_player=false`
@@ -71,29 +78,39 @@
           :onclick `playerctl play-pause`))
 
       (player_icons :icon "怜"
-        :onclick `playerctl next`))))
+        :onclick `playerctl next`))
+     (music_text)
 
+     ))
 
 
 
 (defwidget music_module []
   (eventbox
-    :onhover '${eww} update reveal_music=true && /home/racso/.config/eww/scripts/getMusicImage.sh'
+    :onhover '${eww} update reveal_music=true'
     :onhoverlost '${eww} update reveal_music=false'
-    :class "music_icon" :onclick `${eww} update reveal_music=${!reveal_music}`
-  (button
-    :onclick '$HOME/.config/eww/scripts/openMusic'
-
-       {reveal_music ? "  " : "  "})))
+    :onclick `${eww} update reveal_music=${!reveal_music}`
+    (box :space-evenly false :spacing 10
+      :class `${reveal_music?"music_icon_hover":""} music_title_short`
+      (button
+        :onclick '$HOME/.config/eww/scripts/openMusic'
+        :class `music_icon`
+          (circular-progress-bar
+            :dimension 30
+            :value 50
+            (image :path song_art
+              :image-height 30)))
+                music_title_short)))
 
 
 (defwindow music_menu 
-  :geometry (geometry :x "25%" 
+  :geometry (geometry :x "40%" 
   :y "45" 
   :anchor "top left")
   (eventbox
     :onhoverlost `${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic`
-    (music)))
+    (music)
+    ))
 
 
 

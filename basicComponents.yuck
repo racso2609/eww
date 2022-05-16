@@ -40,6 +40,20 @@
       :class "progress"
            )))
 
+(defwidget circular-progress-bar [?class value ?thickness ?start-angle ?dimension]
+
+    (circular-progress 
+      :value value
+      :height "${dimension ? dimension + 10 : 10}"
+      :width "${dimension ? dimension + 10 : 10}"
+      :start-angle {start-angle ? start-angle  : 90}
+      :thickness {thickness ? thickness  : 10}
+      :class "${class} progress"
+      (children)
+           )
+  
+  )
+
 
 
 

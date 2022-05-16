@@ -1,45 +1,59 @@
-*{
-	all: unset;
-	font-family: feather;
-	font-family: Caskaydia cove nerd font;
-    margin: 0;
-    padding: 0;
+* {
+  all: unset;
+  font-family: feather;
+  font-family: Caskaydia cove nerd font;
+  margin: 0;
+  padding: 0;
 }
 
-.music_icon{
+.music_icon {
   font-size: 30px;
+  padding: 5px;
+}
+.music_icon_hover {
+  opacity: 0.9;
 }
 
-.bar{
+.music_image {
+  margin-top: 10px;
+}
+
+.music_title_short {
+  font-size: 12px;
+}
+
+.music_title {
+  font-size: 15px;
+}
+
+.bar {
   font-size: 1rem;
   color: white;
   padding: 0 10px;
 }
 
-.background{
+.background {
   background-color: #282828;
 }
 
-.volumeIcon{
-  font-size: 1.6rem; 
+.volumeIcon {
+  font-size: 1.6rem;
+}
+.music {
+  padding: 10px 50px;
 }
 
-.metric{
-  color: white;
-
-  .progress{
-    background-color: purple;
-    color: red;
-    margin: 0;
-  }
+.progress {
+  background-color: purple;
+  color: blue;
+  margin: 0;
 }
 
-.music_btn{
+.music_btn {
   background-color: transparent;
   color: white;
-  
 }
 
-.player_icon{
+.player_icon {
   font-size: 40px;
 }

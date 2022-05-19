@@ -95,7 +95,6 @@
       (box :space-evenly false :spacing 10
         :class `${reveal_music?"music_icon_hover":""} music_title_short`
         (button
-
           :onclick '$HOME/.config/eww/scripts/openMusic'
           :class `music_icon`
             (circular-progress-bar

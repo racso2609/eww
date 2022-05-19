@@ -9,21 +9,23 @@
     (children)))
 
 
-(defwidget two-boxes [orientation class space-evenly]
+(defwidget two-boxes [?orientation ?space-evenly ?spacing ?valign ?halign ?class ?width]
   (box
-
     :orientation orientation
-    :class class
     :space-evenly space-evenly
+    :width width
+    :spacing spacing
+    :valign valign
+    :halign halign
+    :class class
 
-    (box :class `${class}-first` (children :nth 0))
-    (box :class `${class}-second` (children :nth 1))))
+     (children :nth 0)
+     (children :nth 1)))
 
 
 (defwidget metric [icon labelClass label value  h iconClass spacing valign ]
   (box :orientation h
     :class "metric"
-
     :space-evenly false
     :spacing spacing
     :valign valign
@@ -40,8 +42,7 @@
       :class "progress"
            )))
 
-(defwidget circular-progress-bar [?class value ?thickness ?start-angle ?dimension]
-
+(defwidget circular-progress-bar [?class ?value ?thickness ?start-angle ?dimension]
     (circular-progress 
       :value value
       :height "${dimension ? dimension + 10 : 10}"

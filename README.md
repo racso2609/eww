@@ -4,3 +4,4 @@
     playerctl
     curl
     awk
+    pactl

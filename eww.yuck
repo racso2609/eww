@@ -5,7 +5,6 @@
 (include './components/music.yuck');
 (include './components/dateTime.yuck');
 (include './components/dashboardInfo.yuck');
-
 (defvar eww "/usr/bin/eww -c $HOME/.config/eww")
 
 
@@ -32,5 +31,5 @@
                       :width "60%"
                       :height "10px"
                       :anchor "top center")
-  :reserve (struts :side "top" :distance "5%")
+  :reserve (struts :side "top" :distance "4%")
   (bar))

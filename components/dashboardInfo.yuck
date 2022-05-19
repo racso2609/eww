@@ -1,2 +1,66 @@
 (defwidget dashboard []
-    (box :halign 'start' ""))
+  (button
+    :onclick '$HOME/.config/eww/scripts/openDashboard'
+     (box :halign 'start' 
+      "")))
+(defvar default_photo
+  '/home/racso/wallpapers/IMG-bakugo-izuku-y-shoto_3840x2160_xtrafondos.com.jpg')
+
+(defwidget profile_image [?height ?path]
+  (box
+    (image
+      :path default_photo
+      :image-height 180
+      :image-width 180
+    )
+  )
+)
+
+(defwindow dashboard_menu
+  :geometry (geometry :x "20%" 
+  :y "45" 
+  :anchor "top left")
+  (eventbox
+    :onhoverlost `$HOME/.config/eww/scripts/openDashboard`
+    (box
+      :class 'dashboard_menu menu'
+      :orientation 'v'
+      (two-boxes
+        :spacing 10
+            (profile_image)
+        (two-boxes
+          :valign 'center'
+          :space-evenly true
+          :halign 'center'
+          :spacing 10
+          :width "200"
+            (two-boxes
+              :spacing 10
+              :orientation "v"
+
+                "ram"
+                "cpu"
+            )
+          (two-boxes
+            :valign 'center'
+            :space-evenly true
+            :spacing 10
+            :orientation "v"
+              "memory"
+              "temp"
+          )
+        )
+      )
+    (box
+      :spacing 10
+      :halign 'center'
+      :valign 'center'
+      :space-evenly true
+
+        "wifi"
+        "bluetooth"
+        "microphone"
+      )
+    )
+  )
+)

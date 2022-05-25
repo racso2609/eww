@@ -1,3 +1,4 @@
+// GENERAL
 * {
   all: unset;
   font-family: feather;
@@ -5,10 +6,57 @@
   margin: 0;
   padding: 0;
 }
+tooltip.background {
+    background-color: #0f0f17;
+    font-size: 18;
+    border-radius: 10px;
+    color: #bfc9db;
+}
+
+tooltip label {
+    margin: 6px;
+}
+
 .menu{
   padding: 10px;
 }
+.bar {
+  font-size: 1rem;
+  color: white;
+  padding: 5px 10px;
+}
 
+.background {
+  background-color: #282828;
+}
+
+
+
+.progress {
+  background-color: purple;
+  color: blue;
+  margin: 0;
+}
+// GENERAL
+
+
+
+// DASHBOARD
+.avatar{
+  background-color: #343636;
+  padding: 20px;
+  border-radius: 20px;
+}
+.metric_font{
+  color: white;
+  font-size: 12px;
+}
+.sys-icon{
+  font-size: 16px;
+}
+// DASHBOARD
+
+// MUSIC
 .music_icon {
   font-size: 30px;
   padding: 5px;
@@ -28,28 +76,11 @@
 .music_title {
   font-size: 15px;
 }
-
-.bar {
-  font-size: 1rem;
-  color: white;
-  padding: 5px 10px;
-}
-
-.background {
-  background-color: #282828;
-}
-
 .volumeIcon {
   font-size: 1.6rem;
 }
 .music {
   padding: 10px 50px;
-}
-
-.progress {
-  background-color: purple;
-  color: blue;
-  margin: 0;
 }
 
 .music_btn {
@@ -60,3 +91,4 @@
 .player_icon {
   font-size: 40px;
 }
+// MUSIC

@@ -8,11 +8,36 @@
 
 (defwidget profile_image [?height ?path]
   (box
-    (image
-      :path default_photo
-      :image-height 180
-      :image-width 180
-    )
+    :space-evenly true
+    :halign true
+    :valign true
+    :class 'avatar'
+      (image
+        :path default_photo
+        :image-height 180
+        :image-width 180
+      )
+  )
+)
+
+(defwidget process_check [value ?label ?class]
+  
+  (circular-progress-bar
+    :value value
+    :thickness 5
+    :start-angle 75
+    :halign 'center'
+    :valign "center"
+    (box
+      :tooltip {round(value,0)}
+      :width 60 
+      :height 60  
+      :class `metric_font ${class}`
+      :halign 'center'
+      :valign "center"
+      {label}
+
+    ) 
   )
 )
 
@@ -25,10 +50,13 @@
     (box
       :class 'dashboard_menu menu'
       :orientation 'v'
+      :spacing 10
+      :space-evenly false
       (two-boxes
         :spacing 10
             (profile_image)
         (two-boxes
+          :class 'avatar'
           :valign 'center'
           :space-evenly true
           :halign 'center'
@@ -37,29 +65,28 @@
             (two-boxes
               :spacing 10
               :orientation "v"
-
-                "ram"
-                "cpu"
+              (process_check :value {EWW_RAM.used_mem_perc} :label 'RAM')
+              (process_check :value {EWW_RAM.used_mem_perc} :label "CPU")
             )
           (two-boxes
             :valign 'center'
             :space-evenly true
             :spacing 10
             :orientation "v"
-              "memory"
-              "temp"
+              (process_check 
+                :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+                :label 'MEM'
+              )
+              (process_check :value 0 :label 'TEMP')
           )
         )
       )
-    (box
-      :spacing 10
-      :halign 'center'
-      :valign 'center'
-      :space-evenly true
-
-        "wifi"
-        "bluetooth"
-        "microphone"
+    (centerbox
+          :class 'avatar'
+      :space-evenly false
+      (process_check :value 100 :label ' ' :class 'sys-icon')
+      (process_check :value 100 :label '' :class 'sys-icon')
+      (process_check :value 100 :label '' :class 'sys-icon')
       )
     )
   )

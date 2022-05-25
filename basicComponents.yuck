@@ -47,8 +47,8 @@
       :value value
       :height "${dimension ? dimension + 10 : 10}"
       :width "${dimension ? dimension + 10 : 10}"
-      :start-angle {start-angle ? start-angle  : 90}
-      :thickness {thickness ? thickness  : 10}
+      :start-at start-angle
+      :thickness thickness
       :class "${class} progress"
       (children)
            )

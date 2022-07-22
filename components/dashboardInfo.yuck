@@ -1,6 +1,6 @@
 (defwidget dashboard []
   (button
-    :onclick '$HOME/.config/eww/scripts/openDashboard'
+    :onclick 'bash $HOME/.config/eww/scripts/openDashboard'
      (box :halign 'start' 
       "")))
 (defvar default_photo
@@ -46,7 +46,7 @@
   :y "45" 
   :anchor "top left")
   (eventbox
-    :onhoverlost `$HOME/.config/eww/scripts/openDashboard`
+    :onhoverlost `bash $HOME/.config/eww/scripts/openDashboard`
     (box
       :class 'dashboard_menu menu'
       :orientation 'v'

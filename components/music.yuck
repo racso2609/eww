@@ -61,9 +61,14 @@
     :halign 'center'
       (circular-progress-bar
         :dimension 165
-        :value 50
+
+      (box
+        :width 150
+        :height 150
+
           (image :path song_art
-            :image-height 150))
+            :image-height 150
+        )))
       (box :orientation 'v'
         :valign 'center'
         :halign 'center'
@@ -95,24 +100,24 @@
       (box :space-evenly false :spacing 10
         :class `${reveal_music?"music_icon_hover":""} music_title_short`
         (button
-          :onclick '$HOME/.config/eww/scripts/openMusic'
+          :onclick 'bash $HOME/.config/eww/scripts/openMusic'
           :class `music_icon`
             (circular-progress-bar
               :dimension 30
               :value 50
+              (box :width 30 :height 30
               (image :path song_art
-                :image-height 30)))
+                :image-height 30))))
                   music_title_short))))
 
 
 (defwindow music_menu 
   :geometry (geometry :x "40%" 
-  :y "45" 
+  :y "40" 
   :anchor "top left")
   (eventbox
     :onhoverlost `${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic`
-    (music)
-    ))
+    (music)))
 
 
 

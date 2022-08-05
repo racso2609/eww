@@ -6,11 +6,13 @@
   margin: 0;
   padding: 0;
 }
+.container{
+  padding: 0 10px;
+}
 tooltip.background {
     background-color: #0f0f17;
     font-size: 18;
     border-radius: 10px;
-    color: #bfc9db;
 }
 
 tooltip label {
@@ -22,7 +24,6 @@ tooltip label {
 }
 .bar {
   font-size: 1rem;
-  color: white;
   padding: 2px 10px;
 }
 
@@ -34,7 +35,6 @@ tooltip label {
 
 .progress {
   background-color: purple;
-  color: blue;
   margin: 0;
 }
 // GENERAL
@@ -48,7 +48,6 @@ tooltip label {
   border-radius: 20px;
 }
 .metric_font{
-  color: white;
   font-size: 12px;
 }
 .sys-icon{
@@ -85,7 +84,6 @@ tooltip label {
 
 .music_btn {
   background-color: transparent;
-  color: white;
 }
 
 .player_icon {

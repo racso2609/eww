@@ -1,9 +1,8 @@
+
 (defwidget battery []
 
-    (labeled-container :name `${EWW_BATTERY.BAT0.status  == 'Charging' ? "" : EWW_BATTERY.BAT0.status == "Full"?"" :"" }  ${EWW_BATTERY.BAT0.capacity}%`
-  :w 10
-  :h 10
-      )
-
-
-  )
+    (labeled-container 
+      :name `${EWW_BATTERY.BAT0.status  == 'Charging' ? "" : EWW_BATTERY.BAT0.status == "Full"?"" :"" }  ${EWW_BATTERY.BAT0.capacity}%`
+    :w 10
+    :h 10
+    :style "color: ${white};background-color: ${magenta}"))

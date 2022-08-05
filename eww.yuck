@@ -1,10 +1,11 @@
 
-(include "./basicComponents.yuck");
+(include "./general/basicComponents.yuck");
 (include './components/volume.yuck');
 (include './components/battery.yuck');
 (include './components/music.yuck');
 (include './components/dateTime.yuck');
 (include './components/dashboardInfo.yuck');
+(include './general/colors.yuck')
 (defvar eww "/usr/bin/eww -c $HOME/.config/eww")
 
 

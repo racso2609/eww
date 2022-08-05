@@ -1,0 +1,14 @@
+(defpoll foreground :interval "5s"
+   "theme-compositor --get-theme-color foreground")
+
+(defpoll magenta :interval "5s"
+   "theme-compositor --get-theme-color magenta")
+
+
+(defpoll white :interval "5s"
+   "theme-compositor --get-theme-color white")
+
+
+
+
+

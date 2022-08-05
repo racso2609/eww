@@ -1,10 +1,10 @@
 
-(defwidget labeled-container [name w h]
+(defwidget labeled-container [name w h ?style]
   (box :class "container"
 
   :width w
   :height h
-
+  :style style
     name
     (children)))
 

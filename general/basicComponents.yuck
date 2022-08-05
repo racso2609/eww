@@ -1,22 +1,24 @@
 
-(defwidget labeled-container [name w h ?style]
+(defwidget labeled-container [name w h ?style ?class]
   (box :class "container"
 
   :width w
   :height h
   :style style
+    :class class
     name
     (children)))
 
 
-(defwidget two-boxes [?orientation ?space-evenly ?spacing ?valign ?halign ?class ?width]
+(defwidget two-boxes [?orientation ?space-evenly ?spacing ?valign ?halign ?class ?width ?style]
   (box
-    :orientation orientation
-    :space-evenly space-evenly
-    :width width
+    :style 'background-color: ${background}; color: ${foreground};${style}'
+    :orientation {orientation == '' ? 'h' : orientation}
+    :space-evenly {space-evenly == '' ? false : space-evenly }
+    :width {width == '' ? 0 : width} 
     :spacing spacing
-    :valign valign
-    :halign halign
+    :valign {valign == '' ? 'center': valign}
+    :halign {halign == '' ? 'center': halign}
     :class class
 
      (children :nth 0)
@@ -44,9 +46,10 @@
 
 (defwidget circular-progress-bar [?class ?value ?thickness ?start-angle ?dimension]
     (circular-progress 
+      :style 'color: ${white}; background-color: ${magenta}'
       :value value
-      :height "${dimension ? dimension + 10 : 10}"
-      :width "${dimension ? dimension + 10 : 10}"
+      :height {dimension != '' ? dimension + 10 : 10}
+      :width {dimension != '' ? dimension + 10 : 10}
       :start-at start-angle
       :thickness thickness
       :class "${class} progress"

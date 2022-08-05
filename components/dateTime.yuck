@@ -13,18 +13,21 @@
   (eventbox
     :onhover   `${eww} update showDate=true`
     :onhoverlost   `${eww} update showDate=false`
+    :style "color: ${white}; background-color: ${cyan}"
     (button
-      :onclick `${eww} open calendarWin`
+      :onclick `bash $HOME/.config/eww/scripts/openCalendar`
       (box
+        :style 'padding: 0 10px;'
         `${showDate ? date : time}`))))
 
-(defwindow calendarWin 
-  :geometry (geometry :x "60%" 
-  :y "45" 
-  :anchor "top left"
+(defwindow calendar_win
+  :geometry (geometry :x -5 
+  :y 55 
+  :anchor "top right"
   :width "20%")
   (eventbox
-    :onhoverlost `${eww} close calendarWin`
+      :style 'background-color: ${background}; color: ${foreground};'
+    :onhoverlost `bash $HOME/.config/eww/scripts/openCalendar`
     (calendar)))
 
 

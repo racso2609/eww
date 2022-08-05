@@ -2,7 +2,7 @@
 (defvar hover_player false)
 
 (defpoll song_art :interval "5s"
-    "$HOME/.config/eww/scripts/getMusicImage")
+    "$HOME/.config/eww/scripts/getMusicImage" )
 
 (deflisten music_artist
   :initial "Not Artist"
@@ -112,11 +112,12 @@
 
 
 (defwindow music_menu 
-  :geometry (geometry :x "40%" 
-  :y "40" 
-  :anchor "top left")
+  :geometry (geometry 
+  :y '50px' 
+  :anchor "top center")
   (eventbox
-    :onhoverlost `${eww} update reveal_music=false && $HOME/.config/eww/scripts/openMusic`
+    :style 'background-color: ${background}; color: ${foreground}'
+    :onhoverlost `${eww} update reveal_music=false && bash $HOME/.config/eww/scripts/openMusic`
     (music)))
 
 

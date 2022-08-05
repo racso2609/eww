@@ -1,8 +1,38 @@
+(defwidget warning_container []
+  (box
+    :style 'color: ${EWW_BATTERY.BAT0.capacity <= 20 ?
+      red :
+      EWW_BATTERY.BAT0.capacity <= 50 ? 
+      yellow:
+      white
+    }'
+    (children)
+  )
+)
+
+
+(defwidget battery_icon []
+  (warning_container
+    {EWW_BATTERY.BAT0.status  == 'Charging' ?
+    "" :
+    EWW_BATTERY.BAT0.status == "Full"?
+      "" :
+      "" }
+    )
+)
+ (defwidget battery_porcentage []
+   (warning_container
+      `${EWW_BATTERY.BAT0.capacity}%`
+     )
+)
 
 (defwidget battery []
-
-    (labeled-container 
-      :name `${EWW_BATTERY.BAT0.status  == 'Charging' ? "" : EWW_BATTERY.BAT0.status == "Full"?"" :"" }  ${EWW_BATTERY.BAT0.capacity}%`
-    :w 10
-    :h 10
-    :style "color: ${white};background-color: ${magenta}"))
+    (box 
+      :width 10
+      :height 10
+      :class 'dock-container'
+      :style "color: ${white};background-color: ${magenta};"
+      (battery_icon)
+      (battery_porcentage)
+      
+))

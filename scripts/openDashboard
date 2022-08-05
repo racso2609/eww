@@ -8,9 +8,10 @@ EWW_BIN="/usr/bin/eww"
 if [[ ! -f "$LOCK_FILE" ]]; then
     ${EWW_BIN} open dashboard_menu
     touch "$LOCK_FILE"
-    run && echo "ok good!"
+    echo "ok good!"
 
 else
     ${EWW_BIN} close dashboard_menu
-    rm "$LOCK_FILE" && echo "closed"
+    rm "$LOCK_FILE" 
+    echo "closed"
 fi

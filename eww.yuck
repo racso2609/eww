@@ -10,13 +10,15 @@
 
 
 (defwidget bar []
-  (box :orientation "h"  :space-evenly true :class 'bar' 
+  (box
+    :style 'background-color: ${background}; color: ${foreground}'
+    :orientation "h"  :space-evenly true :class 'bar' 
     (dashboard)
     (music_module)
     (sidestuff)))
 
 (defwidget sidestuff []
-  (box :space-evenly false  :halign "end" :spacing 10
+  (box :space-evenly true :halign "end" 
 
     (volume_component)
     (battery)

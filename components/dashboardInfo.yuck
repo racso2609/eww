@@ -1,16 +1,21 @@
+(defvar isHamburOpen false)
+
 (defwidget dashboard []
   (button
-    :onclick 'bash $HOME/.config/eww/scripts/openDashboard'
+    :class 'dock-container'
+    :style 'color: ${isHamburOpen ? foreground : magenta}'
+    :onclick 'bash $HOME/.config/eww/scripts/openDashboard '
      (box :halign 'start' 
       "")))
+
 (defvar default_photo
   '/home/racso/wallpapers/IMG-bakugo-izuku-y-shoto_3840x2160_xtrafondos.com.jpg')
 
 (defwidget profile_image [?height ?path]
   (box
     :space-evenly true
-    :halign true
-    :valign true
+    :halign 'center'
+    :valign 'center'
     :class 'avatar'
       (image
         :path default_photo
@@ -41,27 +46,32 @@
   )
 )
 
+
 (defwindow dashboard_menu
-  :geometry (geometry :x "20%" 
-  :y "45" 
+  :geometry (geometry :x 10 
+  :y 45 
   :anchor "top left")
   (eventbox
     :onhoverlost `bash $HOME/.config/eww/scripts/openDashboard`
+    :style 'background-color: ${background}; color: ${foreground}'
+    :class 'dock-container'
     (box
       :class 'dashboard_menu menu'
       :orientation 'v'
       :spacing 10
       :space-evenly false
       (two-boxes
+        :style 'background-color: ${black}; color: ${foreground};'
         :spacing 10
             (profile_image)
         (two-boxes
+          :style 'background-color: ${black}; color: ${foreground};'
           :class 'avatar'
           :valign 'center'
           :space-evenly true
           :halign 'center'
           :spacing 10
-          :width "200"
+          :width 200
             (two-boxes
               :spacing 10
               :orientation "v"
@@ -69,6 +79,7 @@
               (process_check :value {EWW_RAM.used_mem_perc} :label "CPU")
             )
           (two-boxes
+            :style 'background-color: ${black}; color: ${foreground};'
             :valign 'center'
             :space-evenly true
             :spacing 10
@@ -82,8 +93,9 @@
         )
       )
     (centerbox
-          :class 'avatar'
-      :space-evenly false
+      :style 'background-color: ${black}; color: ${foreground};'
+      :class 'avatar'
+      ; :space-evenly false
       (process_check :value 100 :label ' ' :class 'sys-icon')
       (process_check :value 100 :label '' :class 'sys-icon')
       (process_check :value 100 :label '' :class 'sys-icon')

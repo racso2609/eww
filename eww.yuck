@@ -12,7 +12,8 @@
 (defwidget bar []
   (box
     :style 'background-color: ${background}; color: ${foreground}'
-    :orientation "h"  :space-evenly true :class 'bar' 
+    :class 'bar'
+    :orientation "h"
     (dashboard)
     (music_module)
     (sidestuff)))
@@ -30,8 +31,8 @@
   :monitor 0
   :windowtype "dock"
   :geometry (geometry :x "0"
-                      :y "0"
-                      :width "100%"
+                      :y "5px"
+                      :width "90%"
                       :height "5px"
                       :anchor "top center")
   :reserve (struts :side "top" :distance "4%")

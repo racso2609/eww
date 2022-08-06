@@ -17,7 +17,7 @@
     (button
       :onclick `bash $HOME/.config/eww/scripts/openCalendar`
       (box
-        :style 'padding: 0 10px;'
+        :class 'dock-container'
         `${showDate ? date : time}`))))
 
 (defwindow calendar_win

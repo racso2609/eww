@@ -1,5 +1,5 @@
 
-(defwidget labeled-container [name w h ?style ?class]
+(defwidget labeled-container [name ?w ?h ?style ?class]
   (box :class "container"
 
   :width w

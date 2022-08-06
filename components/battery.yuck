@@ -28,8 +28,6 @@
 
 (defwidget battery []
     (box 
-      :width 10
-      :height 10
       :class 'dock-container'
       :style "color: ${white};background-color: ${magenta};"
       (battery_icon)

@@ -6,13 +6,11 @@
     (box
     (labeled-container
       :name `${is_muted == 'yes' ? "ﱝ" : volume < "60" ? "" :volume > "60" ? "" : "墳"}` 
-      :w 20
-      :h 20)
+      )
 
     (labeled-container
       :name `${volume}%` 
-      :w 20
-      :h 20))))
+      ))))
 
 
 

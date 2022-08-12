@@ -14,10 +14,10 @@
 (defwidget battery_icon []
   (warning_container
     {EWW_BATTERY.BAT0.status  == 'Charging' ?
-    "" :
+    "  " :
     EWW_BATTERY.BAT0.status == "Full"?
-      "" :
-      "" }
+      "  " :
+      "  " }
     )
 )
  (defwidget battery_porcentage []

@@ -15,7 +15,7 @@
     :style 'background-color: ${background}; color: ${foreground};${style}'
     :orientation {orientation == '' ? 'h' : orientation}
     :space-evenly {space-evenly == '' ? false : space-evenly }
-    :width {width == '' ? 0 : width} 
+    :width {width == '' ? 0 : width}
     :spacing spacing
     :valign {valign == '' ? 'center': valign}
     :halign {halign == '' ? 'center': halign}
@@ -31,13 +31,13 @@
     :space-evenly false
     :spacing spacing
     :valign valign
-    
+
 
     (box :class iconClass icon)
 
     (box :class labelClass label)
 
-    (circular-progress 
+    (circular-progress
       :value value
       :start-angle 90
       :thickness 10
@@ -45,7 +45,7 @@
            )))
 
 (defwidget circular-progress-bar [?class ?value ?thickness ?start-angle ?dimension]
-    (circular-progress 
+    (circular-progress
       :style 'color: ${white}; background-color: ${magenta}'
       :value value
       :height {dimension != '' ? dimension + 10 : 10}
@@ -55,13 +55,5 @@
       :class "${class} progress"
       (children)
            )
-  
+
   )
-
-
-
-
-
-
-
-

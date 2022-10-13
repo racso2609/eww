@@ -60,16 +60,13 @@
     :halign 'center'
       (circular-progress-bar
         :dimension 60
+        :thickness 5
         :value {round(actual_porcentage, 0)}
 
       (box
         :width 150
         :height 150
         :orientation 'v'
-
-          (labeled-container
-            :name {round(actual_porcentage, 0)})
-
           (image :path song_art
             :image-height 150
         )))
@@ -108,13 +105,14 @@
           :class `music_icon`
             (circular-progress-bar
               :dimension 20
+              :thickness 4
               :value "${round(actual_porcentage, 1)}"
 
 
-              (box :width 15 :height 15
+              (box :width 20 :height 20
 
               (image :path song_art
-                :image-height 15))))
+                :image-height 30))))
                   music_title_short))))
 
 

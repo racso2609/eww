@@ -3,6 +3,12 @@ LOCK_FILE="$HOME/.cache/eww-music.png"
 
 rm $LOCK_FILE
 touch $LOCK_FILE
-playerctl metadata | awk 'FNR == 3 {print $3}' | xargs curl > $LOCK_FILE
+IMAGE=$(playerctl metadata | awk 'FNR == 3 {print $3}')
+
+if [[ $IMAGE == "" ]];then
+  IMAGE='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7GqiBKKu_loBW0mwbJw0VzhSlx7h5Oxds1g&usqp=CAU'
+fi
+
+echo $IMAGE | xargs curl > $LOCK_FILE
 
 echo $LOCK_FILE

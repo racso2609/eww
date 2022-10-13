@@ -46,7 +46,7 @@
 
 (defwidget circular-progress-bar [?class ?value ?thickness ?start-angle ?dimension]
     (circular-progress
-      :style 'color: ${white}; background-color: ${magenta}'
+      :style 'color: ${magenta}; background-color: ${white}'
       :value value
       :height {dimension != '' ? dimension + 10 : 10}
       :width {dimension != '' ? dimension + 10 : 10}

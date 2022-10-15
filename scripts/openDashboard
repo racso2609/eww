@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 LOCK_FILE="$HOME/.cache/eww-dashboard.lock"
@@ -12,6 +11,6 @@ if [[ ! -f "$LOCK_FILE" ]]; then
 
 else
     ${EWW_BIN} close dashboard_menu
-    rm "$LOCK_FILE" 
+    rm "$LOCK_FILE"
     echo "closed"
 fi

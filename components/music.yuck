@@ -61,6 +61,7 @@
       (circular-progress-bar
         :dimension 60
         :thickness 5
+        :start-angle 75
         :value {round(actual_porcentage, 0)}
 
       (box
@@ -75,6 +76,7 @@
         :halign 'center'
 
           (music_text)
+          ; {music_status}
 
           (box :orientation "h" :halign 'cetern' :valign "center"
           (player_icons :icon "玲"
@@ -105,7 +107,8 @@
           :class `music_icon`
             (circular-progress-bar
               :dimension 20
-              :thickness 4
+              :thickness 3
+              :start-angle 75
               :value "${round(actual_porcentage, 1)}"
 
 

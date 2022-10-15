@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 LOCK_FILE="$HOME/.cache/eww-music.lock"

@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+LOCK_FILE="$HOME/.cache/eww-profile.png"
+
+if [[ ! -f "$LOCK_FILE" ]]; then
+    rm $LOCK_FILE
+    touch $LOCK_FILE
+fi
+
+
+IMAGE='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7GqiBKKu_loBW0mwbJw0VzhSlx7h5Oxds1g&usqp=CAU'
+
+
+echo $IMAGE | xargs curl > $LOCK_FILE
+
+
+echo $LOCK_FILE

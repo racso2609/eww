@@ -5,28 +5,28 @@
     :class 'dock-container'
     :style 'color: ${isHamburOpen ? foreground : magenta}'
     :onclick 'bash $HOME/.config/eww/scripts/openDashboard '
-     (box :halign 'start' 
+     (box :halign 'start'
       "")))
 
-(defvar default_photo
-  '/home/racso/wallpapers/IMG-bakugo-izuku-y-shoto_3840x2160_xtrafondos.com.jpg')
+(defpoll default_photo :interval "10s"
+  'bash $HOME/.config/eww/scripts/dashBoard/getProfileImage')
 
 (defwidget profile_image [?height ?path]
-  (box
+  (circular-progress-bar
     :space-evenly true
     :halign 'center'
     :valign 'center'
     :class 'avatar'
       (image
         :path default_photo
-        :image-height 180
-        :image-width 180
+        :image-height 150
+        :image-width 150
       )
   )
 )
 
 (defwidget process_check [value ?label ?class]
-  
+
   (circular-progress-bar
     :value value
     :thickness 5
@@ -35,21 +35,21 @@
     :valign "center"
     (box
       :tooltip {round(value,0)}
-      :width 60 
-      :height 60  
+      :width 60
+      :height 60
       :class `metric_font ${class}`
       :halign 'center'
       :valign "center"
       {label}
 
-    ) 
+    )
   )
 )
 
 
 (defwindow dashboard_menu
-  :geometry (geometry :x 10 
-  :y 45 
+  :geometry (geometry :x 10
+  :y 45
   :anchor "top left")
   (eventbox
     :onhoverlost `bash $HOME/.config/eww/scripts/openDashboard`
@@ -84,7 +84,7 @@
             :space-evenly true
             :spacing 10
             :orientation "v"
-              (process_check 
+              (process_check
                 :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
                 :label 'MEM'
               )

@@ -1,0 +1,79 @@
+(include './components/music/modules/bar_module.yuck')
+(include './components/music/modules/panel_module.yuck')
+
+(defvar reveal_music false)
+(defvar hover_player false)
+
+(defpoll song_art :interval "5s"
+    "$HOME/.config/eww/scripts/getMusicImage" )
+
+(deflisten music_artist
+  :initial "Not Artist"
+  "playerctl --follow metadata --format '{{ artist }}' || true"
+  )
+
+(defpoll music_status :interval "1s"
+  :initial "Not Music"
+  `playerctl status`
+  )
+
+(deflisten music_title
+  :initial "Not Music"
+  "playerctl --follow metadata --format '{{ trunc(title,20) }}' || true"
+  )
+
+
+(deflisten music_title_short
+  :initial "Not Music"
+  "playerctl --follow metadata --format '{{ trunc(title,10) }}' || true"
+)
+
+
+(defpoll actual_porcentage
+  :interval '1s'
+  "bash $HOME/.config/eww/scripts/music/getActualTime.bash"
+  )
+
+
+(defwidget music_text []
+
+  (box
+    :class "music_title"
+    :orientation "v"
+    :space-evenly false
+    {music_title}
+    {`ﴁ ${music_artist}`}
+  )
+)
+
+
+(defwidget player_icons [icon onclick ?size ?style ?class]
+  (button
+    :onclick onclick
+    (box
+      :class `player_icon ${class}`
+      (labeled-container
+        :name icon
+        :w {size ? size : 50}
+        :h {size ? size : 50}
+        :style style
+      )
+    )
+  )
+)
+
+(defwindow music_menu
+  :geometry (geometry
+  :y 50
+  :x "11%"
+  :anchor "top center")
+   (eventbox
+    :onhoverlost `${eww} update reveal_music=false && bash $HOME/.config/eww/scripts/openMusic`
+    :style `background-color: ${background}; color: ${foreground}; border-radius: 10px;`
+    (music)
+  )
+)
+
+(defwidget music_module []
+  (bar_module)
+)

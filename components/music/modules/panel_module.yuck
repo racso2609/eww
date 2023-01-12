@@ -1,0 +1,46 @@
+(defwidget music []
+
+  (box :class "music"
+    :orientation "h"
+    :space-evenly false
+    :spacing 10
+    :valign 'center'
+    :halign 'center'
+
+    (circular-progress-bar
+      :dimension 60
+      :thickness 5
+      :start-angle 75
+      :value {round(actual_porcentage, 0)}
+
+      (box
+        :width 150
+        :height 150
+        :orientation 'v'
+
+          (image :path song_art :image-height 150)
+      )
+    )
+    (box :orientation 'v'
+        :valign 'center'
+        :halign 'center'
+
+          (music_text)
+          ; {music_status}
+
+      (box :orientation "h" :halign 'cetern' :valign "center"
+        (player_icons :icon "玲"
+          :onclick `playerctl previous`)
+        (eventbox
+          :onhover `${eww} update hover_player=true`
+          :onhoverlost `${eww} update hover_player=false`
+        (player_icons
+          :icon {music_status ==  "Playing" ? hover_player ? "":"":hover_player ? "":""}
+          :onclick `playerctl play-pause`))
+
+        (player_icons :icon "怜"
+          :onclick `playerctl next`)
+      )
+    )
+  )
+)

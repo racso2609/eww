@@ -9,11 +9,11 @@
 
 
 (defwidget timeAndDate []
-  
+
   (eventbox
     :onhover   `${eww} update showDate=true`
     :onhoverlost   `${eww} update showDate=false`
-    :style "color: ${white}; background-color: ${cyan}"
+    ; :style "color: ${white}; background-color: ${cyan}"
     (button
       :onclick `bash $HOME/.config/eww/scripts/openCalendar`
       (box
@@ -21,16 +21,11 @@
         `${showDate ? date : time}`))))
 
 (defwindow calendar_win
-  :geometry (geometry :x -5 
-  :y 55 
+  :geometry (geometry :x -5
+  :y 55
   :anchor "top right"
   :width "20%")
   (eventbox
-      :style 'background-color: ${background}; color: ${foreground};'
+    :style 'background-color: ${background}; color: ${foreground};'
     :onhoverlost `bash $HOME/.config/eww/scripts/openCalendar`
     (calendar)))
-
-
-
-
-

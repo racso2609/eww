@@ -1,12 +1,21 @@
 (defvar isHamburOpen false)
+(defvar isMenuHover false)
 
 (defwidget dashboard []
-  (button
-    :class 'dock-container'
-    :style 'color: ${isHamburOpen ? foreground : magenta}'
-    :onclick 'bash $HOME/.config/eww/scripts/openDashboard '
-     (box :halign 'start'
-      "")))
+  (eventbox
+    :onhover `${eww} update isMenuHover=true`
+    :onhoverlost `${eww} update isMenuHover=false`
+    (button
+
+      :class 'dock-container'
+      :onclick 'bash $HOME/.config/eww/scripts/openDashboard '
+      :style 'color: ${isMenuHover ? magenta : foreground }'
+
+
+      (box :halign 'start' :class '${isMenuHover?"hover":""}' "")
+    )
+  )
+)
 
 (defpoll default_photo :interval "10s"
   'bash $HOME/.config/eww/scripts/dashBoard/getProfileImage')

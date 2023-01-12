@@ -2,7 +2,7 @@
   (box
     :style 'color: ${EWW_BATTERY.BAT0.capacity <= 20 ?
       red :
-      EWW_BATTERY.BAT0.capacity <= 50 ? 
+      EWW_BATTERY.BAT0.capacity <= 50 ?
       yellow:
       white
     }'
@@ -27,10 +27,10 @@
 )
 
 (defwidget battery []
-    (box 
+    (box
       :class 'dock-container'
-      :style "color: ${white};background-color: ${magenta};"
+      ; :style "color: ${white};background-color: ${magenta};"
       (battery_icon)
       (battery_porcentage)
-      
+
 ))

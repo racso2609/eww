@@ -19,7 +19,7 @@
     (sidestuff)))
 
 (defwidget sidestuff []
-  (box :space-evenly true :halign "end" 
+  (box :space-evenly true :halign "end"
 
     (volume_component)
     (battery)

@@ -5,25 +5,25 @@
    "theme-compositor --get-theme-color foreground")
 
 (defpoll black :interval "5s"
-   "theme-compositor --get-theme-color black")
+   "theme-compositor --get-theme-color Black")
 
 (defpoll red :interval "5s"
-   "theme-compositor --get-theme-color red")
+   "theme-compositor --get-theme-color Red")
 
 (defpoll green :interval "5s"
-   "theme-compositor --get-theme-color green")
+   "theme-compositor --get-theme-color Green")
 
 (defpoll yellow :interval "5s"
-   "theme-compositor --get-theme-color yellow")
+   "theme-compositor --get-theme-color Yellow")
 
 (defpoll blue :interval "5s"
-   "theme-compositor --get-theme-color blue")
+   "theme-compositor --get-theme-color Blue")
 
 (defpoll magenta :interval "5s"
-   "theme-compositor --get-theme-color magenta")
+   "theme-compositor --get-theme-color Magenta")
 
 (defpoll cyan :interval "5s"
-   "theme-compositor --get-theme-color cyan")
+   "theme-compositor --get-theme-color Cyan")
 
 (defpoll white :interval "5s"
-   "theme-compositor --get-theme-color white")
+   "theme-compositor --get-theme-color White")

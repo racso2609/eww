@@ -1,0 +1,72 @@
+(defvar hover_off false)
+(defvar hover_restart false)
+(defvar hover_suspend false)
+
+(defvar close_power_command "eww close power_menu && eww close power_overlay")
+
+(defwindow power_overlay
+  :geometry (geometry
+  :anchor "center center"
+    :width "100%" :height "100%"
+  )
+
+  (eventbox
+  :onhover `${eww} open power_menu`
+  :style `background-color: ${background}; border-radius: 10px; color: ${hover_off? magenta : foreground}; opacity: .4;`
+  (button
+  :onclick `${close_power_command}`
+
+  )
+  )
+)
+
+(defwindow power_menu
+  :geometry (geometry
+  :anchor "center center")
+
+  (box
+    :style `background-color: ${background}; color: ${foreground}; border-radius: 10px;` :orientation 'h'
+
+          (eventbox
+              :onhoverlost `${eww} update hover_off=false`
+              :onhover `${eww} update hover_off=true`
+              :style `border-radius: 10px; color: ${hover_off? magenta : foreground};`
+              (button
+              :onclick "shutdown now"
+                (box :orientation "v"
+
+                  (labeled-container  :name '' :style  `padding: 20px 0 5px 0; font-size: 40px;`)
+                  (labeled-container  :name 'off' :style  `padding: 0 20px;`)
+                )
+              )
+              )
+
+
+          (eventbox
+              :onhoverlost `${eww} update hover_restart=false`
+              :onhover `${eww} update hover_restart=true`
+              :style `border-radius: 10px; color: ${hover_restart? magenta : foreground};`
+              (button
+              :onclick "shutdown -r now"
+                (box :orientation "v"
+
+                  (labeled-container  :name '' :style  `padding: 20px 0 5px 0;font-size: 40px; color: ${hover_restart? magenta : foreground};`)
+                  (labeled-container  :name 'restart' :style  `padding: 0 20px;`)
+                )
+              ))
+
+          (eventbox
+              :onhoverlost `${eww} update hover_suspend=false`
+              :onhover `${eww} update hover_suspend=true`
+              :style `border-radius: 10px; color: ${hover_suspend? magenta : foreground};`
+              (button
+              :onclick "systemctl suspend"
+                (box :orientation "v"
+
+                  (labeled-container  :name '⏾' :style  `padding: 20px 0 5px 0;font-size: 40px;`)
+                  (labeled-container  :name 'suspend' :style  `padding: 0 20px;`)
+                )
+              )
+              )
+  )
+)

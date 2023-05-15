@@ -1,39 +1,6 @@
-
 (include "./general/basicComponents.yuck");
-(include './components/volume/volume.yuck');
-(include './components/battery/battery.yuck');
 (include './components/music/music.yuck');
-(include './components/dateTime/dateTime.yuck');
 (include './components/dashboard/dashboard.yuck');
+(include './components/power/power.yuck');
 (include './general/colors.yuck')
 (defvar eww "/usr/bin/eww -c $HOME/.config/eww")
-
-
-(defwidget bar []
-  (box
-    :style 'background-color: ${background}; color: ${foreground}'
-    :class 'bar'
-    :orientation "h"
-    (dashboard)
-    (music_module)
-    (sidestuff)))
-
-(defwidget sidestuff []
-  (box :space-evenly true :halign "end"
-
-    (volume_component)
-    (battery)
-       (timeAndDate)))
-
-
-
-(defwindow bar
-  :monitor 1
-  :windowtype "dock"
-  :geometry (geometry :x "0"
-                      :y "5px"
-                      :width "90%"
-                      :height "5px"
-                      :anchor "top center")
-  :reserve (struts :side "top" :distance "4%")
-  (bar))

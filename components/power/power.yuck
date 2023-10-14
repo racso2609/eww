@@ -5,6 +5,8 @@
 (defvar close_power_command "eww close power_menu && eww close power_overlay")
 
 (defwindow power_overlay
+  :windowtype "dialog"
+  :wm-ignore	true
   :geometry (geometry
   :anchor "center center"
     :width "100%" :height "100%"
@@ -23,6 +25,8 @@
 (defwindow power_menu
   :geometry (geometry
   :anchor "center center")
+  :windowtype "dialog"
+  :wm-ignore	true
 
   (box
     :style `background-color: ${background}; color: ${foreground}; border-radius: 10px;` :orientation 'h'
